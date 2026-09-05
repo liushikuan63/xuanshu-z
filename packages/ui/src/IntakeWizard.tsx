@@ -62,7 +62,7 @@ export function IntakeWizard({ initialCategory, initialArt, initialTime, initial
   const askFollow = async (q: string) => {
     if (!ai.enabled) { toast('AI 辅助解读未开启（设置中可开启）'); return; }
     if (!cast || !art) return;
-    setAiBusy(true); setAiErr(null); setAiText(null);
+    setAiBusy(true); setAiErr(null);
     try {
       const user = buildPromptSnapshot(cast, art, birth, { gender, category: category ?? '其他', question, timeLabel: fmtClock(birth) })
         + `\n\n【补充追问】${q}（请只就这一追问展开，保持六段结构）`;

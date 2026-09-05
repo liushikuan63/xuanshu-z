@@ -126,6 +126,36 @@ export function RuleHits({ hits, fromCaseId }: { hits: RuleHit[]; fromCaseId?: s
   );
 }
 
+function AiBusyLabel({ text }: { text: string }) {
+  return (
+    <span className="ai-busy-label">
+      <span className="ai-spin" aria-hidden="true" />
+      <span>{text}</span>
+    </span>
+  );
+}
+
+function AiGenerationWait({ followup = false }: { followup?: boolean } = {}) {
+  const yao = ['yang', 'yin', 'yang', 'yin', 'yin', 'yang'] as const;
+  return (
+    <div id={followup ? undefined : 'ai-result'} className="ai-wait" role="status" aria-live="polite" aria-atomic="true">
+      <div className="ai-oracle" aria-hidden="true">
+        {yao.map((kind, index) => (
+          <span className={`ai-oracle-line ${kind}`} style={{ animationDelay: `${index * 120}ms` }} key={`${kind}-${index}`}>
+            <i />{kind === 'yin' && <i />}
+          </span>
+        ))}
+      </div>
+      <div className="ai-wait-copy">
+        <b>AI 正在推演{followup ? '追问' : '整盘解读'}<span className="ai-ellipsis" aria-hidden="true"><i>·</i><i>·</i><i>·</i></span></b>
+        <div className="ai-wait-progress" aria-hidden="true"><span /></div>
+        <div className="muted small">免费模型可能需要较长时间，请稍候。</div>
+        <div className="muted small">将按盘面事实、解读推断、立场结论、原因依据、应期建议与延伸提醒分节输出。</div>
+      </div>
+    </div>
+  );
+}
+
 export function AnswerPanel({ answer, onAskAI, aiBusy, aiText, aiErr, aiQuestion }: { answer: ComposedAnswer; onAskAI?: () => void; aiBusy?: boolean; aiText?: string | null; aiErr?: string | null; aiQuestion?: string }) {
   // AI 结果打字机呈现：逐字输出，完成后平滑滚动到结果区块
   const [typed, setTyped] = useState('');
@@ -148,7 +178,7 @@ export function AnswerPanel({ answer, onAskAI, aiBusy, aiText, aiErr, aiQuestion
       <h3 className="card-title" style={{ rowGap: 4 }}>
         <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, flex: '1 1 auto', minWidth: 0 }}>
           精准答复 · {ART_NAMES[answer.art as never] ?? answer.art} / {answer.category}
-          {onAskAI && <button className="btn sm" style={{ marginLeft: 'auto' }} onClick={onAskAI} disabled={aiBusy}>{aiBusy ? 'AI 组织中…' : 'AI 辅助解读'}</button>}
+          {onAskAI && <button className="btn sm ai-answer-button" style={{ marginLeft: 'auto' }} onClick={onAskAI} disabled={aiBusy}>{aiBusy ? <AiBusyLabel text="AI 组织中" /> : 'AI 辅助解读'}</button>}
         </span>
         <span className="tag dai" style={{ flexBasis: '100%' }}>{answer.summary}</span>
       </h3>
@@ -165,12 +195,7 @@ export function AnswerPanel({ answer, onAskAI, aiBusy, aiText, aiErr, aiQuestion
           )}
         </div>
       ))}
-      {aiBusy && !aiText && (
-        <div id="ai-result" style={{ marginTop: 10, padding: 12, border: '1px dashed var(--violet, #8b5cf6)', borderRadius: 10, background: 'rgba(124,77,166,.07)' }}>
-          <div className="row" style={{ gap: 8, alignItems: 'center' }}><span className="ai-spin" /><b>AI 正在生成整盘解读…</b></div>
-          <div className="muted small" style={{ marginTop: 4 }}>将按【结论】【缘由】【应期】【建议】分节输出（模型生成，未经原典核实，仅供参考）。</div>
-        </div>
-      )}
+      {aiBusy && !aiText && <AiGenerationWait />}
       {aiText && (
         <div id="ai-result" style={{ marginTop: 10, padding: 12, border: '1px dashed var(--violet, #8b5cf6)', borderRadius: 10, background: 'rgba(124,77,166,.07)' }}>
           <b className="small">🤖 AI 辅助解读（模型生成 · 未经原典核实 · 仅供参考）</b>
@@ -190,10 +215,11 @@ export function AiQuickBar({ onAskAI, aiBusy, onCopyPrompt, copyMsg, hint }: {
   return (
     <div className="card" style={{ marginTop: 10, borderLeft: '4px solid var(--gold)', background: 'var(--soft-c)' }}>
       <div className="row wrap" style={{ gap: 8, alignItems: 'center' }}>
-        {onAskAI && <button className="btn primary" onClick={onAskAI} disabled={aiBusy}>{aiBusy ? 'AI 组织中…' : '🤖 AI 辅助解读'}</button>}
+        {onAskAI && <button className="btn primary ai-quick-button" onClick={onAskAI} disabled={aiBusy}>{aiBusy ? <AiBusyLabel text="AI 组织中" /> : '🤖 AI 辅助解读'}</button>}
         {onCopyPrompt && <button className="btn" onClick={onCopyPrompt}>📋 复制提示词</button>}
         {copyMsg && <span className="muted small" role="status">{copyMsg}</span>}
       </div>
+      {aiBusy && <div className="ai-quick-progress" aria-hidden="true"><span /></div>}
       {hint && <div className="muted small" style={{ marginTop: 6 }}>{hint}</div>}
     </div>
   );
@@ -296,9 +322,10 @@ export function AIResultModal({ text, error, question, onClose, toastMsg, onAsk,
           <div className="row wrap" style={{ marginTop: 10, gap: 6 }}>
             <input className="input" style={{ flex: 1, minWidth: 180 }} placeholder="对同一盘继续追问，如：再帮我细看财运/推一个方向…" value={askQ} onChange={e => setAskQ(e.target.value)}
               onKeyDown={e => { if (e.key === 'Enter' && askQ.trim() && onAsk) { onAsk(askQ.trim()); setAskQ(''); } }} aria-label="继续追问" />
-            <button className="btn sm" disabled={askBusy || !askQ.trim()} onClick={() => { if (askQ.trim() && onAsk) { onAsk(askQ.trim()); setAskQ(''); } }}>{askBusy ? '追问中…' : '继续追问'}</button>
+            <button className="btn sm ai-followup-button" disabled={askBusy || !askQ.trim()} onClick={() => { if (askQ.trim() && onAsk) { onAsk(askQ.trim()); setAskQ(''); } }}>{askBusy ? <AiBusyLabel text="追问中" /> : '继续追问'}</button>
           </div>
         )}
+        {askBusy && <AiGenerationWait followup />}
         </>
         )}
       </div>

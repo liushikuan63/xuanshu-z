@@ -136,7 +136,7 @@ export function CombinedView() {
   // 同盘继续追问（八术综合）
   const askFollowC = async (q: string) => {
     if (!ai.enabled) { toast('AI 辅助解读未开启（设置中可开启）'); return; }
-    setAiBusy(true); setAiErr(null); setAiText(null);
+    setAiBusy(true); setAiErr(null);
     try {
       const r = await callAIStrict(ai, buildCombined() + `\n\n【补充追问】${q}（请只就这一追问展开，保持六段结构）`);
       if (r.ok) setAiText(r.text ?? '（AI 未返回内容）');
