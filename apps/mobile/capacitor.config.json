@@ -1,0 +1,7 @@
+{
+  "appId": "xuanshu.workbench",
+  "appName": "玄枢",
+  "webDir": "../web/dist",
+  "android": { "allowMixedContent": false },
+  "server": { "androidScheme": "https" }
+}
