@@ -1,13 +1,30 @@
 /** AI 严格解读护栏：系统提示词结构 / 输出校验（不合格拦截，避免混乱输出直接给用户） */
 import { describe, it, expect } from 'vitest';
-import { DEFAULT_AI, STRICT_SYSTEM, callAI, validateStrictReply } from '../packages/ai/src/index';
+import { createCipheriv, randomBytes } from 'node:crypto';
+import {
+  DEFAULT_AI, STRICT_SYSTEM, callAI, decryptFallbackCredential,
+  hasEmbeddedAIFallback, validateStrictReply,
+} from '../packages/ai/src/index';
 
 describe('AI 严格解读护栏', () => {
   it('默认关闭且缺少用户 API Key 时不会发起请求', async () => {
     expect(DEFAULT_AI.enabled).toBe(false);
+    expect(hasEmbeddedAIFallback()).toBe(false);
     const result = await callAI({ ...DEFAULT_AI, enabled: true }, 'system', 'user');
     expect(result.ok).toBe(false);
     expect(result.error).toContain('API Key');
+  });
+  it('可以解开构建期 AES-256-GCM 保底凭据，并拒绝篡改密文', async () => {
+    const wrapKey = randomBytes(32);
+    const iv = randomBytes(12);
+    const cipher = createCipheriv('aes-256-gcm', wrapKey, iv);
+    const encrypted = Buffer.concat([cipher.update('test-credential', 'utf8'), cipher.final()]);
+    const payload = Buffer.concat([iv, encrypted, cipher.getAuthTag()]);
+    await expect(decryptFallbackCredential(payload.toString('base64url'), wrapKey.toString('base64url')))
+      .resolves.toBe('test-credential');
+    payload[payload.length - 1] ^= 1;
+    await expect(decryptFallbackCredential(payload.toString('base64url'), wrapKey.toString('base64url')))
+      .rejects.toThrow();
   });
   it('系统提示词包含六段结构与禁编造条款', () => {
     for (const k of ['盘面事实', '解读推断', '立场结论', '原因依据', '应期建议', '未见依据', '延伸提醒', '不夸大', '不编造']) {

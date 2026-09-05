@@ -22,6 +22,7 @@ describe('已修复问题的回归保护', () => {
     expect(resolveCommand('not-a-command')).toBeNull();
     expect(resolveCommand('doctor')?.args[0]).toMatch(/doctor\.mjs$/);
     expect(resolveCommand('build:web')?.args).toContain('build');
+    expect(resolveCommand('ai:fallback:verify')?.args).toContain('--verify');
   });
 
   it('奇门精批沿用盘面的阳遁标识', () => {

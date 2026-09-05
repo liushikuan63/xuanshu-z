@@ -35,6 +35,9 @@ export function resolveCommand(mode = 'web', args = []) {
     case 'doctor': return nodeScript('doctor.mjs', args, '运行环境体检');
     case 'verify-citation': return nodeScript('verify-citation.mjs', args, '校验引擎引用');
     case 'verify-playbook': return nodeScript('verify-playbook.mjs', args, '校验断事路径卡');
+    case 'verify-secrets': return nodeScript('verify-secrets.mjs', args, '检查 Git 跟踪文件中的明文凭据');
+    case 'ai:fallback:setup': return nodeScript('setup-ai-fallback.mjs', args, '生成本机加密 AI 保底配置');
+    case 'ai:fallback:verify': return nodeScript('setup-ai-fallback.mjs', ['--verify', ...args], '生成并实测本机加密 AI 保底配置');
     case 'kb:lint': return nodeScript('kb-lint.mjs', args, '校验知识库语料');
     case 'kb:repair': return nodeScript('repair-corpus.mjs', args, '修复知识库派生字段');
     case 'cal': return nodeScript('daily-advice.mjs', args, '生成每日建议');
@@ -44,7 +47,8 @@ export function resolveCommand(mode = 'web', args = []) {
 
 export const SUPPORTED_COMMANDS = [
   'web', 'dev', 'desktop', 'test', 'typecheck', 'install', 'build:web',
-  'desktop:dist', 'doctor', 'verify-citation', 'verify-playbook', 'kb:lint', 'kb:repair', 'cal',
+  'desktop:dist', 'doctor', 'verify-citation', 'verify-playbook', 'verify-secrets',
+  'ai:fallback:setup', 'ai:fallback:verify', 'kb:lint', 'kb:repair', 'cal',
 ];
 
 function run() {

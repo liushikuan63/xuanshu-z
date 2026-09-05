@@ -40,6 +40,8 @@ node scripts/mobile-emulator.mjs sync
 apps/mobile/android/app/build/outputs/apk/debug/app-debug.apk
 ```
 
+若已通过 `npm run ai:fallback:verify` 生成本机 `apps/web/.env.local`，Web 与 Android 构建会注入同一份加密 OpenRouter 保底配置；该本机文件和明文凭据都不会进入公开仓库。
+
 当前包名为 `xuanshu.workbench`，`minSdk 22`、`targetSdk 34`。定位只在用户主动点击“当前位置”时请求，用于真太阳时和方位计算；也可完全使用手动城市选择。
 
 Debug APK 适合本机验收，不适合商店发布。正式发布前应提升 `versionCode`，配置独立签名、备份密钥，并按目标商店当期要求复核 `targetSdk` 与隐私声明。

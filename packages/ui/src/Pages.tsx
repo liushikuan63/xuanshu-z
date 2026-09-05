@@ -14,10 +14,11 @@ import { BoardRenderer } from './boards';
 import { RuleHits, AiQuickBar, AIResultModal } from './components';
 import { CITY_LONGS, CITY_PROVINCES, citiesOfProvince, cityNameOf } from './castShared';
 import { DISCLAIMER } from '@xuanshu/answer';
-import { PROVIDERS, callAIStrict } from '@xuanshu/ai';
+import { PROVIDERS, callAIStrict, hasEmbeddedAIFallback } from '@xuanshu/ai';
 import { dailySign, SIGNS, badgesEarned, nextBadge } from './engage';
 import { dailyAdvice, huangliOf, HOUR_RANGES } from '@xuanshu/core';
 const providers = PROVIDERS;
+const hasBuildAIFallback = hasEmbeddedAIFallback();
 
 export function HomeView() {
   const counts = useLiveQuery(async () => {
@@ -450,13 +451,13 @@ export function SettingsView() {
             <label className="field"><span>模型名（可使用提供商默认值或填写自定义 ID）</span>
               <input className="input" value={ai.model} onChange={e => setAI({ ...ai, model: e.target.value })} placeholder={ai.providerId === 'openrouter' ? '留空使用 openrouter/free' : '如 deepseek-chat'} />
             </label>
-            <label className="field"><span>API Key（必填；只保存在当前页面内存）</span>
-              <input className="input" type="password" value={ai.keyInMemory ?? ''} onChange={e => setAI({ ...ai, keyInMemory: e.target.value })} placeholder="刷新或退出应用后清除" autoComplete="off" />
+            <label className="field"><span>API Key（{hasBuildAIFallback ? '可选；手动值仅保存在内存' : '必填；只保存在当前页面内存'}）</span>
+              <input className="input" type="password" value={ai.keyInMemory ?? ''} onChange={e => setAI({ ...ai, keyInMemory: e.target.value })} placeholder={hasBuildAIFallback ? '留空使用本机构建保底' : '刷新或退出应用后清除'} autoComplete="off" />
             </label>
-            {ai.providerId === 'openrouter' && <div className="muted small" style={{ gridColumn: '1 / -1' }}>OpenRouter 兼容 OpenAI 接口：模型可留空使用免费路由，但必须输入你自己的 API Key。</div>}
+            {ai.providerId === 'openrouter' && <div className="muted small" style={{ gridColumn: '1 / -1' }}>OpenRouter 兼容 OpenAI 接口：模型可留空使用免费路由；手动 Key 始终优先。</div>}
           </div>
         )}
-        <div className="muted small">Web、桌面和 Android 均不持久化 API Key；刷新或退出应用后需要重新输入。AI 输出一律 E 级标注「AI 生成，未经原典核实」。</div>
+        <div className="muted small">{hasBuildAIFallback ? '本机构建已配置加密 OpenRouter 保底；未输入手动 Key 时会固定使用免费路由。' : '当前构建未配置 AI 保底，需要手动输入 Key。'}手动 Key 不持久化，刷新或退出后清除。AI 输出一律 E 级标注「AI 生成，未经原典核实」。</div>
       </div>
       <div className="card">
         <h3 className="card-title">知识库</h3>

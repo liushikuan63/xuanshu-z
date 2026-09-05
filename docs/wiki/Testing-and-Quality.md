@@ -11,7 +11,7 @@ npm run kb:lint
 npm run build:web
 ```
 
-`npm run check` 聚合前四项。任何一项失败都不应发布。
+`npm run check` 聚合明文凭据扫描、类型检查、全量测试、引文校验和路径卡校验。语料检查因扫描量较大而独立执行；任何一项失败都不应发布。
 
 ## 覆盖重点
 

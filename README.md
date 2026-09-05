@@ -22,7 +22,7 @@ npm run dev
 开发地址默认为 `http://127.0.0.1:5190/`。常用质量命令：
 
 ```bash
-npm run check          # 严格类型、全量测试、引文和路径卡校验
+npm run check          # 凭据扫描、严格类型、全量测试、引文和路径卡校验
 npm run kb:lint        # 语料结构、文本派生字段和乱码检查
 npm run build:web      # 生产 Web 构建
 npm run desktop:dist   # Electron 安装包

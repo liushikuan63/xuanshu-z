@@ -34,6 +34,55 @@ export interface AuditLog {
   time: string; provider: string; model: string;
   inputHash: string; outputHash: string;
   latencyMs: number; tokens?: number; schemaVersion: number;
+  credentialSource?: 'user' | 'embedded-fallback';
+}
+
+const BUILD_FALLBACK_CIPHER = import.meta.env.VITE_AI_FALLBACK_CIPHER?.trim() ?? '';
+const BUILD_FALLBACK_WRAP_KEY = import.meta.env.VITE_AI_FALLBACK_WRAP_KEY?.trim() ?? '';
+
+function decodeBase64Url(value: string): Uint8Array {
+  if (!/^[A-Za-z0-9_-]+$/.test(value)) throw new Error('加密配置不是有效的 Base64URL');
+  const normalized = value.replace(/-/g, '+').replace(/_/g, '/');
+  const padded = normalized.padEnd(Math.ceil(normalized.length / 4) * 4, '=');
+  const binary = atob(padded);
+  return Uint8Array.from(binary, char => char.charCodeAt(0));
+}
+
+function toArrayBuffer(bytes: Uint8Array): ArrayBuffer {
+  const copy = new Uint8Array(bytes.byteLength);
+  copy.set(bytes);
+  return copy.buffer;
+}
+
+/**
+ * 解开构建时注入的 AES-256-GCM 凭据。密文格式为 12 字节 IV + 密文 + 16 字节认证标签。
+ * 包装密钥与密文同在客户端产物中，因此这是防误提交/明文扫描措施，不是服务端级密钥保密。
+ */
+export async function decryptFallbackCredential(cipher: string, wrapKey: string): Promise<string> {
+  const keyBytes = decodeBase64Url(wrapKey);
+  const payload = decodeBase64Url(cipher);
+  if (keyBytes.byteLength !== 32 || payload.byteLength <= 28) throw new Error('加密配置长度非法');
+  const key = await crypto.subtle.importKey('raw', toArrayBuffer(keyBytes), 'AES-GCM', false, ['decrypt']);
+  const plain = await crypto.subtle.decrypt(
+    { name: 'AES-GCM', iv: toArrayBuffer(payload.slice(0, 12)), tagLength: 128 },
+    key,
+    toArrayBuffer(payload.slice(12)),
+  );
+  const credential = new TextDecoder().decode(plain).trim();
+  if (!credential) throw new Error('解密后的凭据为空');
+  return credential;
+}
+
+export function hasEmbeddedAIFallback(): boolean {
+  return Boolean(BUILD_FALLBACK_CIPHER && BUILD_FALLBACK_WRAP_KEY);
+}
+
+let fallbackCredentialPromise: Promise<string | undefined> | undefined;
+function embeddedFallbackCredential(): Promise<string | undefined> {
+  if (!hasEmbeddedAIFallback()) return Promise.resolve(undefined);
+  fallbackCredentialPromise ??= decryptFallbackCredential(BUILD_FALLBACK_CIPHER, BUILD_FALLBACK_WRAP_KEY)
+    .catch(() => undefined);
+  return fallbackCredentialPromise;
 }
 
 /** 结构化输出修复（§10.3）：JSON tool schema + 严格正则修复，attempt ≤ 2，失败降级 */
@@ -58,11 +107,20 @@ export const DEFAULT_MODEL: Record<string, string> = { openrouter: 'openrouter/f
 /** 调用主入口（Web 壳直连，受 CORS 限制；桌面壳走主进程代理） */
 export async function callAI(settings: AISettings, system: string, user: string): Promise<{ ok: boolean; text?: string; error?: string; audit?: AuditLog }> {
   if (!settings.enabled) return { ok: false, error: 'AI 辅助解读未开启' };
-  const key = settings.keyInMemory?.trim();
-  if (!key) return { ok: false, error: '请先在设置中输入 API Key（仅保存在当前页面内存）' };
-  const model = settings.model.trim() || DEFAULT_MODEL[settings.providerId] || '';
+  let key = settings.keyInMemory?.trim();
+  let providerId = settings.providerId;
+  let model = settings.model.trim() || DEFAULT_MODEL[providerId] || '';
+  let baseUrl = settings.baseUrl || PROVIDERS.find(p => p.id === providerId)?.baseUrlTemplate;
+  let credentialSource: AuditLog['credentialSource'] = 'user';
+  if (!key) {
+    key = await embeddedFallbackCredential();
+    if (!key) return { ok: false, error: '请先在设置中输入 API Key；当前构建未配置可用的 AI 保底凭据' };
+    providerId = 'openrouter';
+    model = DEFAULT_MODEL.openrouter;
+    baseUrl = PROVIDERS.find(p => p.id === providerId)?.baseUrlTemplate;
+    credentialSource = 'embedded-fallback';
+  }
   if (!model) return { ok: false, error: '请先填写模型名称' };
-  const baseUrl = settings.baseUrl || PROVIDERS.find(p => p.id === settings.providerId)?.baseUrlTemplate;
   if (!baseUrl || !/^https?:\/\//.test(baseUrl)) return { ok: false, error: 'baseUrl 非法' };
   const t0 = Date.now();
   try {
@@ -84,9 +142,9 @@ export async function callAI(settings: AISettings, system: string, user: string)
     return {
       ok: true, text,
       audit: {
-        time: new Date().toISOString(), provider: settings.providerId, model,
+        time: new Date().toISOString(), provider: providerId, model,
         inputHash: await h(system + user), outputHash: await h(text),
-        latencyMs: Date.now() - t0, tokens: data.usage?.total_tokens, schemaVersion: 1,
+        latencyMs: Date.now() - t0, tokens: data.usage?.total_tokens, schemaVersion: 1, credentialSource,
       },
     };
   } catch (e) {
@@ -95,7 +153,7 @@ export async function callAI(settings: AISettings, system: string, user: string)
 }
 
 /** 隐私提示（§10.4） */
-export const PRIVACY_NOTE = 'AI 请求将把盘面结构与相关检索片段发送给你配置的提供商，按其自身政策处理；玄枢不承诺端到端零留存。API Key 只保存在当前页面内存，刷新或退出应用后清除。';
+export const PRIVACY_NOTE = 'AI 请求会把盘面结构与相关检索片段发送给实际调用的提供商，并按其政策处理；玄枢不承诺端到端零留存。手动输入的 API Key 只保存在当前页面内存；本机构建可另行注入加密的 OpenRouter 保底凭据。';
 
 /** 解读系统提示词（严格结构）：客观、白话、分“盘面事实/解读推断”，限制幻觉与夸张 */
 export const STRICT_SYSTEM = [

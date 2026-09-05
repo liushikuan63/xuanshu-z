@@ -25,7 +25,7 @@ npm run kb:lint
 npm run build:web
 ```
 
-`npm run check` 依次执行 TypeScript 严格检查、Vitest、引文对账和路径卡结构校验。语料校验独立运行，以免日常引擎修改反复扫描全部 3 万余段文本。
+`npm run check` 依次执行 Git 跟踪文件明文凭据扫描、TypeScript 严格检查、Vitest、引文对账和路径卡结构校验。语料校验独立运行，以免日常引擎修改反复扫描全部 3 万余段文本。
 
 ## 数据存储
 
