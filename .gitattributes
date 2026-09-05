@@ -4,6 +4,7 @@
 *.mjs text eol=lf
 *.ts text eol=lf
 *.tsx text eol=lf
+*.gradle text eol=lf
 *.bat text eol=crlf
 *.jsonl text eol=lf
 
