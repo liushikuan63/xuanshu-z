@@ -1,0 +1,18 @@
+{
+  "canonical_id": "zhouyi",
+  "title": "周易（周易注·王弼本）",
+  "author": "王弼注、韩康伯补注",
+  "edition": "识典古籍·四部丛刊景上海涵芬楼藏宋刊本",
+  "publication_date": "魏晋注、先秦经",
+  "license": "公有领域",
+  "art": [
+    "liuyao",
+    "meihua"
+  ],
+  "source_urls": [
+    "https://www.shidianguji.com/book/SBCK001"
+  ],
+  "segment_count": 154,
+  "collected_at": "2026-08-29",
+  "confidence": "A"
+}

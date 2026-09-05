@@ -1,0 +1,18 @@
+{
+  "canonical_id": "huangji-shishi",
+  "title": "皇极经世书",
+  "author": "邵雍（宋）",
+  "edition": "维基文库·皇极经世书（公版整理）",
+  "publication_date": "",
+  "license": "公有领域",
+  "art": [
+    "meihua"
+  ],
+  "source_urls": [
+    "https://zh.wikisource.org/wiki/皇極經世書"
+  ],
+  "segment_count": 1554,
+  "collected_at": "2026-08-31",
+  "confidence": "A",
+  "source_note": "抓取自维基文库（公版整理），未改原文；繁体转简体处理。"
+}

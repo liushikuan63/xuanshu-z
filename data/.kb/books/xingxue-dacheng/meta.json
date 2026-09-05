@@ -1,0 +1,16 @@
+{
+  "canonical_id": "xingxue-dacheng",
+  "title": "星学大成（三十卷）",
+  "author": "万民英（明）·四库全书本",
+  "edition": "kanripo·四库全书文渊阁本（公版整理）",
+  "publication_date": "",
+  "license": "公有领域",
+  "art": [],
+  "source_urls": [
+    "https://zh.wikisource.org/wiki/星學大成"
+  ],
+  "segment_count": 1871,
+  "collected_at": "2026-09-02",
+  "confidence": "A",
+  "source_note": "抓取自维基文库（公版整理），未改原文；繁体转简体处理。"
+}

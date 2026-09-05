@@ -1,0 +1,16 @@
+{
+  "canonical_id": "changshi-wuji",
+  "title": "苌氏武技书",
+  "author": "苌乃周（清）",
+  "edition": "维基文库·苌氏武技书",
+  "publication_date": "",
+  "license": "原作公有领域；电子文本 CC BY-SA 4.0",
+  "art": [],
+  "source_urls": [
+    "https://zh.wikisource.org/zh-hans/萇氏武技書"
+  ],
+  "segment_count": 97,
+  "collected_at": "2026-09-05",
+  "confidence": "A",
+  "source_note": "浏览器逐页核验维基文库六卷正文后导入；原作属公有领域，电子文本按 CC BY-SA 4.0 标注；繁体转简体并按句切段。"
+}

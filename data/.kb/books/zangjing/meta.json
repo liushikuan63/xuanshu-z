@@ -1,0 +1,20 @@
+{
+  "canonical_id": "zangjing",
+  "title": "葬书",
+  "author": "佚名（网络公版整理）",
+  "edition": "古诗文网·公版整理",
+  "publication_date": "",
+  "license": "公有领域",
+  "art": [
+    "qimen"
+  ],
+  "source_urls": [
+    "https://www.gushiwen.cn/guwen/bookv_0043b1da736a.aspx",
+    "https://www.gushiwen.cn/guwen/bookv_3ca270a0b444.aspx",
+    "https://www.gushiwen.cn/guwen/bookv_efdb5d56cdd2.aspx"
+  ],
+  "segment_count": 105,
+  "collected_at": "2026-08-31",
+  "confidence": "A",
+  "source_note": "抓取自公版整理站（古诗文网/古文岛），未改原文"
+}

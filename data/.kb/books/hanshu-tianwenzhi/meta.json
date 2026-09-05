@@ -1,0 +1,16 @@
+{
+  "canonical_id": "hanshu-tianwenzhi",
+  "title": "汉书·天文志",
+  "author": "班固（东汉）",
+  "edition": "维基文库·汉书/卷026 天文志（公版整理）",
+  "publication_date": "",
+  "license": "公有领域",
+  "art": [],
+  "source_urls": [
+    "https://zh.wikisource.org/wiki/漢書天文志"
+  ],
+  "segment_count": 131,
+  "collected_at": "2026-09-02",
+  "confidence": "A",
+  "source_note": "抓取自维基文库（公版整理），未改原文；繁体转简体处理。"
+}

@@ -1,0 +1,16 @@
+{
+  "canonical_id": "zhaijing",
+  "title": "宅经",
+  "author": "托名皇帝（《黄帝宅经》）",
+  "edition": "维基文库·宅经（公版整理）",
+  "publication_date": "",
+  "license": "公有领域",
+  "art": [],
+  "source_urls": [
+    "https://zh.wikisource.org/wiki/宅經"
+  ],
+  "segment_count": 106,
+  "collected_at": "2026-08-31",
+  "confidence": "A",
+  "source_note": "抓取自维基文库（公版整理），未改原文；繁体转简体处理。"
+}

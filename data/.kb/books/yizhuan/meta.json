@@ -1,0 +1,18 @@
+{
+  "canonical_id": "yizhuan",
+  "title": "易传（十翼）",
+  "author": "孔子及后学（传）",
+  "edition": "古文岛·通行整理本",
+  "publication_date": "周（传）",
+  "license": "公有领域",
+  "art": [
+    "liuyao",
+    "meihua"
+  ],
+  "source_urls": [
+    "https://www.guwendao.net/guwen/book_adb08001c74f.aspx"
+  ],
+  "segment_count": 100,
+  "collected_at": "2026-08-29",
+  "confidence": "A"
+}

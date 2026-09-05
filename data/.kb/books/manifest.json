@@ -1,0 +1,576 @@
+{
+  "generated_at": "2026-09-05",
+  "total_books": 86,
+  "total_segments": 32673,
+  "books": [
+    {
+      "canonical_id": "baopuzi",
+      "title": "抱朴子",
+      "art": [],
+      "segment_count": 300
+    },
+    {
+      "canonical_id": "bencao-gangmu",
+      "title": "本草纲目",
+      "art": [],
+      "segment_count": 300
+    },
+    {
+      "canonical_id": "bianque-xinshu",
+      "title": "扁鹊心书",
+      "art": [],
+      "segment_count": 300
+    },
+    {
+      "canonical_id": "bianshi",
+      "title": "卜筮正宗",
+      "art": [
+        "liuyao"
+      ],
+      "segment_count": 143
+    },
+    {
+      "canonical_id": "bianta",
+      "title": "毕法赋（六壬毕法赋）",
+      "art": [
+        "liuren"
+      ],
+      "segment_count": 80
+    },
+    {
+      "canonical_id": "bingjian",
+      "title": "冰鉴",
+      "art": [],
+      "segment_count": 21
+    },
+    {
+      "canonical_id": "binhumaixue",
+      "title": "濒湖脉学",
+      "art": [],
+      "segment_count": 124
+    },
+    {
+      "canonical_id": "boshanpian",
+      "title": "博山篇",
+      "art": [],
+      "segment_count": 120
+    },
+    {
+      "canonical_id": "changshi-wuji",
+      "title": "苌氏武技书",
+      "art": [],
+      "segment_count": 97
+    },
+    {
+      "canonical_id": "cuiguanpian",
+      "title": "催官篇",
+      "art": [],
+      "segment_count": 74
+    },
+    {
+      "canonical_id": "ditiansui",
+      "title": "滴天髓阐微",
+      "art": [
+        "bazi"
+      ],
+      "segment_count": 131
+    },
+    {
+      "canonical_id": "dongpo-yizhuan",
+      "title": "东坡易传",
+      "art": [
+        "liuyao",
+        "meihua"
+      ],
+      "segment_count": 404
+    },
+    {
+      "canonical_id": "duanyi-tianji",
+      "title": "断易天机",
+      "art": [
+        "liuyao"
+      ],
+      "segment_count": 1726
+    },
+    {
+      "canonical_id": "fuqingzhu-nvke",
+      "title": "傅青主女科",
+      "art": [],
+      "segment_count": 702
+    },
+    {
+      "canonical_id": "gongdu-xiangfa",
+      "title": "公笃相法",
+      "art": [],
+      "segment_count": 2156
+    },
+    {
+      "canonical_id": "hanlongjing",
+      "title": "撼龙经",
+      "art": [],
+      "segment_count": 121
+    },
+    {
+      "canonical_id": "hanshu-tianwenzhi",
+      "title": "汉书·天文志",
+      "art": [],
+      "segment_count": 131
+    },
+    {
+      "canonical_id": "huangji-shishi",
+      "title": "皇极经世书",
+      "art": [
+        "meihua"
+      ],
+      "segment_count": 1554
+    },
+    {
+      "canonical_id": "huangjince",
+      "title": "黄金策（总断千金赋直解）",
+      "art": [
+        "liuyao"
+      ],
+      "segment_count": 30
+    },
+    {
+      "canonical_id": "huangtingjing",
+      "title": "黄庭经",
+      "art": [],
+      "segment_count": 66
+    },
+    {
+      "canonical_id": "jingshi-yizhuan",
+      "title": "京氏易传",
+      "art": [
+        "liuyao"
+      ],
+      "segment_count": 250
+    },
+    {
+      "canonical_id": "jinkui-yaolue",
+      "title": "金匮要略",
+      "art": [],
+      "segment_count": 300
+    },
+    {
+      "canonical_id": "lingjianzi",
+      "title": "灵剑子",
+      "art": [],
+      "segment_count": 135
+    },
+    {
+      "canonical_id": "lingshu",
+      "title": "黄帝内经·灵枢",
+      "art": [],
+      "segment_count": 1241
+    },
+    {
+      "canonical_id": "lingxian",
+      "title": "灵宪",
+      "art": [],
+      "segment_count": 19
+    },
+    {
+      "canonical_id": "liuren-daquan",
+      "title": "六壬大全（选录）",
+      "art": [
+        "liuren"
+      ],
+      "segment_count": 100
+    },
+    {
+      "canonical_id": "liuzhuang-shenxiang",
+      "title": "柳庄神相",
+      "art": [],
+      "segment_count": 753
+    },
+    {
+      "canonical_id": "maijing",
+      "title": "脉经",
+      "art": [],
+      "segment_count": 1088
+    },
+    {
+      "canonical_id": "mayi-shenxiang",
+      "title": "麻衣神相",
+      "art": [],
+      "segment_count": 1239
+    },
+    {
+      "canonical_id": "meihua",
+      "title": "梅花易数",
+      "art": [
+        "meihua"
+      ],
+      "segment_count": 142
+    },
+    {
+      "canonical_id": "nanjing",
+      "title": "难经",
+      "art": [],
+      "segment_count": 127
+    },
+    {
+      "canonical_id": "qianjin-fang",
+      "title": "千金方（备急千金要方）",
+      "art": [],
+      "segment_count": 300
+    },
+    {
+      "canonical_id": "qianjin-yifang",
+      "title": "千金翼方",
+      "art": [],
+      "segment_count": 5692
+    },
+    {
+      "canonical_id": "qijing-bamai",
+      "title": "奇经八脉考",
+      "art": [],
+      "segment_count": 107
+    },
+    {
+      "canonical_id": "qingnangjing",
+      "title": "青囊经",
+      "art": [],
+      "segment_count": 20
+    },
+    {
+      "canonical_id": "qiongtong-baojian",
+      "title": "穷通宝鉴",
+      "art": [
+        "bazi"
+      ],
+      "segment_count": 407
+    },
+    {
+      "canonical_id": "quanjing-quanfa",
+      "title": "拳经拳法备要",
+      "art": [],
+      "segment_count": 100
+    },
+    {
+      "canonical_id": "renwuzhi",
+      "title": "人物志",
+      "art": [],
+      "segment_count": 104
+    },
+    {
+      "canonical_id": "sanming-tonghui",
+      "title": "三命通会（选录）",
+      "art": [
+        "bazi"
+      ],
+      "segment_count": 103
+    },
+    {
+      "canonical_id": "shanghan",
+      "title": "伤寒论",
+      "art": [],
+      "segment_count": 300
+    },
+    {
+      "canonical_id": "shanghan-zabing",
+      "title": "伤寒杂病论",
+      "art": [],
+      "segment_count": 300
+    },
+    {
+      "canonical_id": "shaobingge",
+      "title": "烧饼歌",
+      "art": [],
+      "segment_count": 26
+    },
+    {
+      "canonical_id": "shenfeng-tongkao",
+      "title": "神峰通考",
+      "art": [
+        "bazi"
+      ],
+      "segment_count": 67
+    },
+    {
+      "canonical_id": "shennong-bencao",
+      "title": "神农本草经",
+      "art": [],
+      "segment_count": 300
+    },
+    {
+      "canonical_id": "shenxiang-quanbian",
+      "title": "神相全编",
+      "art": [],
+      "segment_count": 184
+    },
+    {
+      "canonical_id": "shenxiang-tieguan",
+      "title": "神相铁关刀",
+      "art": [],
+      "segment_count": 497
+    },
+    {
+      "canonical_id": "shiji",
+      "title": "史记",
+      "art": [],
+      "segment_count": 300
+    },
+    {
+      "canonical_id": "shiliao-bencao",
+      "title": "食疗本草",
+      "art": [],
+      "segment_count": 300
+    },
+    {
+      "canonical_id": "shiyuge",
+      "title": "十喻歌",
+      "art": [
+        "ziwei"
+      ],
+      "segment_count": 2
+    },
+    {
+      "canonical_id": "sisheng-xinyuan",
+      "title": "四圣心源",
+      "art": [],
+      "segment_count": 300
+    },
+    {
+      "canonical_id": "suidi-fu",
+      "title": "斗数骨髓赋（附女命骨髓赋）",
+      "art": [
+        "ziwei"
+      ],
+      "segment_count": 35
+    },
+    {
+      "canonical_id": "suwen",
+      "title": "黄帝内经",
+      "art": [],
+      "segment_count": 300
+    },
+    {
+      "canonical_id": "taijiquan-lun",
+      "title": "太极拳论",
+      "art": [],
+      "segment_count": 2
+    },
+    {
+      "canonical_id": "taiqing-shenjian",
+      "title": "太清神鉴（六卷）",
+      "art": [],
+      "segment_count": 211
+    },
+    {
+      "canonical_id": "taiwei-fu",
+      "title": "太微赋",
+      "art": [
+        "ziwei"
+      ],
+      "segment_count": 18
+    },
+    {
+      "canonical_id": "taiyi-jinhuazongzhi",
+      "title": "太乙金华宗旨",
+      "art": [],
+      "segment_count": 63
+    },
+    {
+      "canonical_id": "tiangong-kaiwu",
+      "title": "天工开物",
+      "art": [],
+      "segment_count": 300
+    },
+    {
+      "canonical_id": "tianguanshu",
+      "title": "史记·天官书",
+      "art": [],
+      "segment_count": 69
+    },
+    {
+      "canonical_id": "tianyu-jing",
+      "title": "天玉经",
+      "art": [],
+      "segment_count": 151
+    },
+    {
+      "canonical_id": "tuibeitu",
+      "title": "推背图",
+      "art": [],
+      "segment_count": 39
+    },
+    {
+      "canonical_id": "wenre-lun",
+      "title": "温热论",
+      "art": [],
+      "segment_count": 66
+    },
+    {
+      "canonical_id": "wenre-tiaobian",
+      "title": "温病条辨",
+      "art": [],
+      "segment_count": 300
+    },
+    {
+      "canonical_id": "wuzhenpian",
+      "title": "悟真篇",
+      "art": [],
+      "segment_count": 82
+    },
+    {
+      "canonical_id": "xingxue-dacheng",
+      "title": "星学大成（三十卷）",
+      "art": [],
+      "segment_count": 1871
+    },
+    {
+      "canonical_id": "xiuling-yaozhi",
+      "title": "修龄要指",
+      "art": [],
+      "segment_count": 76
+    },
+    {
+      "canonical_id": "xuanwei-lun",
+      "title": "玄微论",
+      "art": [
+        "ziwei"
+      ],
+      "segment_count": 6
+    },
+    {
+      "canonical_id": "xuezheng-lun",
+      "title": "血证论",
+      "art": [],
+      "segment_count": 778
+    },
+    {
+      "canonical_id": "yanbodiaosouge",
+      "title": "烟波钓叟歌",
+      "art": [
+        "qimen"
+      ],
+      "segment_count": 19
+    },
+    {
+      "canonical_id": "yangsheng-yanminglu",
+      "title": "养性延命录",
+      "art": [],
+      "segment_count": 68
+    },
+    {
+      "canonical_id": "yangzhai-shishu",
+      "title": "阳宅十书",
+      "art": [],
+      "segment_count": 414
+    },
+    {
+      "canonical_id": "yaoxingge",
+      "title": "药性歌括四百味",
+      "art": [],
+      "segment_count": 115
+    },
+    {
+      "canonical_id": "yijinjing",
+      "title": "易筋经",
+      "art": [],
+      "segment_count": 831
+    },
+    {
+      "canonical_id": "yilongjing",
+      "title": "疑龙经",
+      "art": [],
+      "segment_count": 104
+    },
+    {
+      "canonical_id": "yinfujing",
+      "title": "阴符经",
+      "art": [],
+      "segment_count": 3
+    },
+    {
+      "canonical_id": "yixue-yuanliu",
+      "title": "医学源流论",
+      "art": [],
+      "segment_count": 239
+    },
+    {
+      "canonical_id": "yiyin",
+      "title": "易隐",
+      "art": [
+        "liuyao"
+      ],
+      "segment_count": 1371
+    },
+    {
+      "canonical_id": "yizhuan",
+      "title": "易传（十翼）",
+      "art": [
+        "liuyao",
+        "meihua"
+      ],
+      "segment_count": 100
+    },
+    {
+      "canonical_id": "yuanhaiziping",
+      "title": "渊海子平",
+      "art": [
+        "bazi"
+      ],
+      "segment_count": 115
+    },
+    {
+      "canonical_id": "zangjing",
+      "title": "葬书",
+      "art": [
+        "qimen"
+      ],
+      "segment_count": 105
+    },
+    {
+      "canonical_id": "zengshan",
+      "title": "增删卜易",
+      "art": [
+        "liuyao"
+      ],
+      "segment_count": 160
+    },
+    {
+      "canonical_id": "zhaijing",
+      "title": "宅经",
+      "art": [],
+      "segment_count": 106
+    },
+    {
+      "canonical_id": "zhenjiu-dacheng",
+      "title": "针灸大成",
+      "art": [],
+      "segment_count": 300
+    },
+    {
+      "canonical_id": "zhenjiu-jiayijing",
+      "title": "针灸甲乙经",
+      "art": [],
+      "segment_count": 300
+    },
+    {
+      "canonical_id": "zhouhou-beijifang",
+      "title": "肘后备急方",
+      "art": [],
+      "segment_count": 300
+    },
+    {
+      "canonical_id": "zhouyi",
+      "title": "周易（周易注·王弼本）",
+      "art": [
+        "liuyao",
+        "meihua"
+      ],
+      "segment_count": 154
+    },
+    {
+      "canonical_id": "ziwei-quanshu",
+      "title": "紫微斗数全书",
+      "art": [
+        "ziwei"
+      ],
+      "segment_count": 119
+    }
+  ]
+}

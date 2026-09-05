@@ -1,0 +1,17 @@
+{
+  "canonical_id": "liuren-daquan",
+  "title": "六壬大全（选录）",
+  "author": "不著撰人",
+  "edition": "识典古籍·四库全书本",
+  "publication_date": "明（四库收）",
+  "license": "公有领域",
+  "art": [
+    "liuren"
+  ],
+  "source_urls": [
+    "https://www.shidianguji.com/book/SK1599"
+  ],
+  "segment_count": 100,
+  "collected_at": "2026-08-29",
+  "confidence": "A"
+}

@@ -1,0 +1,19 @@
+{
+  "canonical_id": "dongpo-yizhuan",
+  "title": "东坡易传",
+  "author": "苏轼（宋）",
+  "edition": "维基文库·东坡易传（公版整理）",
+  "publication_date": "",
+  "license": "公有领域",
+  "art": [
+    "liuyao",
+    "meihua"
+  ],
+  "source_urls": [
+    "https://zh.wikisource.org/wiki/東坡易傳"
+  ],
+  "segment_count": 404,
+  "collected_at": "2026-08-31",
+  "confidence": "A",
+  "source_note": "抓取自维基文库（公版整理），未改原文；繁体转简体处理。"
+}

@@ -1,0 +1,18 @@
+{
+  "canonical_id": "qiongtong-baojian",
+  "title": "穷通宝鉴",
+  "author": "清·余春台编（调候总论）",
+  "edition": "维基文库·穷通宝鉴（公版整理）",
+  "publication_date": "",
+  "license": "公有领域",
+  "art": [
+    "bazi"
+  ],
+  "source_urls": [
+    "https://zh.wikisource.org/wiki/窮通寶鑑"
+  ],
+  "segment_count": 407,
+  "collected_at": "2026-08-31",
+  "confidence": "A",
+  "source_note": "抓取自维基文库（公版整理），未改原文；繁体转简体处理。"
+}

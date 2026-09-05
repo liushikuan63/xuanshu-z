@@ -1,0 +1,17 @@
+{
+  "canonical_id": "bianta",
+  "title": "毕法赋（六壬毕法赋）",
+  "author": "凌福之",
+  "edition": "识典古籍·六壬大全所收（四库本）",
+  "publication_date": "宋",
+  "license": "公有领域",
+  "art": [
+    "liuren"
+  ],
+  "source_urls": [
+    "https://www.shidianguji.com/book/SK1599"
+  ],
+  "segment_count": 80,
+  "collected_at": "2026-08-29",
+  "confidence": "A"
+}

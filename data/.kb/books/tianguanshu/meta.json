@@ -1,0 +1,16 @@
+{
+  "canonical_id": "tianguanshu",
+  "title": "史记·天官书",
+  "author": "司马迁（西汉）",
+  "edition": "维基文库·史记/卷027 天官书（公版整理）",
+  "publication_date": "",
+  "license": "公有领域",
+  "art": [],
+  "source_urls": [
+    "https://zh.wikisource.org/wiki/史記天官書"
+  ],
+  "segment_count": 69,
+  "collected_at": "2026-09-02",
+  "confidence": "A",
+  "source_note": "抓取自维基文库（公版整理），未改原文；繁体转简体处理。"
+}

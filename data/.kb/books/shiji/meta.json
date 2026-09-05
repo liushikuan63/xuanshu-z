@@ -1,0 +1,22 @@
+{
+  "canonical_id": "shiji",
+  "title": "史记",
+  "author": "佚名（网络公版整理）",
+  "edition": "古诗文网·公版整理",
+  "publication_date": "",
+  "license": "公有领域",
+  "art": [],
+  "source_urls": [
+    "https://www.gushiwen.cn/guwen/bookv_8298f4e42962.aspx",
+    "https://www.gushiwen.cn/guwen/bookv_0552493bfe6f.aspx",
+    "https://www.gushiwen.cn/guwen/bookv_74baa63a3674.aspx",
+    "https://www.gushiwen.cn/guwen/bookv_88b9d3d55e0f.aspx",
+    "https://www.gushiwen.cn/guwen/bookv_cab5e2fff7da.aspx",
+    "https://www.gushiwen.cn/guwen/bookv_90cad56079b1.aspx",
+    "https://www.gushiwen.cn/guwen/bookv_0f6938f14891.aspx"
+  ],
+  "segment_count": 300,
+  "collected_at": "2026-08-30",
+  "confidence": "A",
+  "source_note": "抓取自公版整理站（古诗文网/古文岛），未改原文"
+}

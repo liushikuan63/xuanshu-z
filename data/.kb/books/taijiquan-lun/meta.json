@@ -1,0 +1,16 @@
+{
+  "canonical_id": "taijiquan-lun",
+  "title": "太极拳论",
+  "author": "题 王宗岳（传本作者有争议）",
+  "edition": "维基文库·太极拳论",
+  "publication_date": "",
+  "license": "原作公有领域；电子文本 CC BY-SA 4.0",
+  "art": [],
+  "source_urls": [
+    "https://zh.wikisource.org/zh-hans/太极拳论"
+  ],
+  "segment_count": 2,
+  "collected_at": "2026-09-05",
+  "confidence": "B",
+  "source_note": "维基文库标记正文完整但来源可靠性未定；保留作者与年代争议说明，繁体转简体并按句切段。"
+}

@@ -1,0 +1,18 @@
+{
+  "canonical_id": "jingshi-yizhuan",
+  "title": "京氏易传",
+  "author": "京房（西汉）",
+  "edition": "维基文库·京氏易传（公版整理）",
+  "publication_date": "",
+  "license": "公有领域",
+  "art": [
+    "liuyao"
+  ],
+  "source_urls": [
+    "https://zh.wikisource.org/wiki/京氏易傳"
+  ],
+  "segment_count": 250,
+  "collected_at": "2026-08-31",
+  "confidence": "A",
+  "source_note": "抓取自维基文库（公版整理），未改原文；繁体转简体处理。"
+}

@@ -1,0 +1,16 @@
+{
+  "canonical_id": "lingshu",
+  "title": "黄帝内经·灵枢",
+  "author": "托名黄帝（先秦—汉）",
+  "edition": "维基文库·灵枢经（公版整理）",
+  "publication_date": "",
+  "license": "公有领域",
+  "art": [],
+  "source_urls": [
+    "https://zh.wikisource.org/wiki/靈樞經"
+  ],
+  "segment_count": 1241,
+  "collected_at": "2026-08-31",
+  "confidence": "A",
+  "source_note": "抓取自维基文库（公版整理），未改原文；繁体转简体处理。"
+}

@@ -1,0 +1,18 @@
+{
+  "canonical_id": "yiyin",
+  "title": "易隐",
+  "author": "曹九锡（清）",
+  "edition": "国学网·易藏/术数（公版整理）",
+  "publication_date": "",
+  "license": "公有领域",
+  "art": [
+    "liuyao"
+  ],
+  "source_urls": [
+    "https://gushu.net.cn/guji/易藏/术数/易隐.html"
+  ],
+  "segment_count": 1371,
+  "collected_at": "2026-09-02",
+  "confidence": "A",
+  "source_note": "抓取自点藏网/国学网（公版整理），未改原文；繁体转简体处理。"
+}
