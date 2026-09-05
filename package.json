@@ -1,0 +1,52 @@
+{
+  "name": "xuanshu-workbench",
+  "version": "1.2.14-Beta",
+  "private": true,
+  "description": "玄枢 · 八术综合占卜工作台（八字/六爻/梅花/紫微/奇门/六壬/小六壬/金口诀）",
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "doctor": "node scripts/run.mjs doctor",
+    "install:all": "node scripts/run.mjs install",
+    "dev": "node scripts/run.mjs dev",
+    "build:web": "node scripts/run.mjs build:web",
+    "test": "node scripts/run.mjs test",
+    "typecheck": "node scripts/run.mjs typecheck",
+    "check": "npm run typecheck && npm test && npm run verify-citation && npm run verify-playbook",
+    "verify-citation": "node scripts/run.mjs verify-citation",
+    "verify-playbook": "node scripts/run.mjs verify-playbook",
+    "kb:lint": "node scripts/run.mjs kb:lint",
+    "kb:repair": "node scripts/run.mjs kb:repair",
+    "cal": "node scripts/run.mjs cal",
+    "desktop:dist": "node scripts/run.mjs desktop:dist",
+    "test:mobile": "node scripts/mobile-emulator.mjs all",
+    "test:mobile:ld": "node scripts/mobile-emulator.mjs all ld"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11",
+    "vitest": "^2.1.8"
+  },
+  "dependencies": {
+    "cnchar": "^3.2.6",
+    "cnchar-trad": "^3.2.6",
+    "dexie": "^4.0.8",
+    "dexie-react-hooks": "^1.1.7",
+    "iztro": "~2.6.0",
+    "lunar-javascript": "^1.7.3",
+    "opencc-js": "^1.4.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sharp": "^0.35.4"
+  }
+}

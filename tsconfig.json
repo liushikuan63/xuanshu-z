@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "types": ["vite/client"],
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "strict": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": ".",
+    "paths": {
+      "@xuanshu/core": ["packages/core/src/index.ts"],
+      "@xuanshu/ledger": ["packages/ledger/src/index.ts"],
+      "@xuanshu/intake": ["packages/intake/src/index.ts"],
+      "@xuanshu/answer": ["packages/answer/src/index.ts"],
+      "@xuanshu/reader": ["packages/reader/src/index.ts"],
+      "@xuanshu/knowledge": ["packages/knowledge/src/index.ts"],
+      "@xuanshu/ai": ["packages/ai/src/index.ts"],
+      "@xuanshu/ui": ["packages/ui/src/index.ts"]
+    }
+  },
+  "include": ["packages/*/src", "apps/web/src", "tests", "scripts", "types"]
+}

@@ -1,0 +1,33 @@
+# Dependencies and package-manager caches
+node_modules/
+**/node_modules/
+.npm/
+
+# Build, test, and packaging outputs
+**/dist/
+**/release/
+coverage/
+*.apk
+*.aab
+*.log
+
+# Local toolchains and generated corpus staging
+.tools/
+.tmp-corpus/
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+**/local.properties
+*.jks
+*.keystore
+google-services.json
+
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini
+

@@ -1,0 +1,17 @@
+{
+  "name": "@xuanshu/desktop",
+  "version": "1.2.14-Beta",
+  "private": true,
+  "type": "commonjs",
+  "main": "src/main.js",
+  "description": "玄枢 Electron 桌面壳（Win11）",
+  "scripts": {
+    "dev": "electron .",
+    "start": "electron .",
+    "dist": "electron-builder --win nsis --config electron-builder.yml"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.1.8"
+  }
+}
