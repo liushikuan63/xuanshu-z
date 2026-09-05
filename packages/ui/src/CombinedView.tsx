@@ -71,7 +71,7 @@ const ART_DESC: Record<string, string> = {
 };
 
 export function CombinedView() {
-  const { ai, toast } = useApp();
+  const { ai, toast, requestAISetup } = useApp();
   const [time, setTime] = useState(() => nowParts());
   const [gender, setGender] = useState<'男' | '女'>('男');
   const [question, setQuestion] = useState('');
@@ -124,7 +124,7 @@ export function CombinedView() {
     return lines.join('\n');
   };
   const askAI = async () => {
-    if (!ai.enabled) { toast('AI 辅助解读未开启（设置中可开启）'); return; }
+    if (!ai.enabled) { requestAISetup(); return; }
     setAiBusy(true); setAiErr(null); setAiText(null);
     try {
       const r = await callAIStrict(ai, buildCombined());
@@ -135,7 +135,7 @@ export function CombinedView() {
   };
   // 同盘继续追问（八术综合）
   const askFollowC = async (q: string) => {
-    if (!ai.enabled) { toast('AI 辅助解读未开启（设置中可开启）'); return; }
+    if (!ai.enabled) { requestAISetup(); return; }
     setAiBusy(true); setAiErr(null);
     try {
       const r = await callAIStrict(ai, buildCombined() + `\n\n【补充追问】${q}（请只就这一追问展开，保持六段结构）`);

@@ -5,6 +5,7 @@ import { ART_NAMES } from '@xuanshu/core';
 import { GLOSSARY, GLOSSARY_TERMS } from '@xuanshu/knowledge';
 import { LEVEL_META, buildDeepLink, partitionByLevel } from '@xuanshu/reader';
 import type { ComposedAnswer } from '@xuanshu/answer';
+import type { AISettings } from '@xuanshu/ai';
 import { exportBoardImage } from './exportBoard';
 
 export function CitationBadge({ citation: cit, from }: { citation?: CitationRef; from?: string }) {
@@ -221,6 +222,52 @@ export function AiQuickBar({ onAskAI, aiBusy, onCopyPrompt, copyMsg, hint }: {
       </div>
       {aiBusy && <div className="ai-quick-progress" aria-hidden="true"><span /></div>}
       {hint && <div className="muted small" style={{ marginTop: 6 }}>{hint}</div>}
+    </div>
+  );
+}
+
+export function AIEnableDialog({ open, ai, hasFallback, onChange, onEnable, onClose }: {
+  open: boolean;
+  ai: AISettings;
+  hasFallback: boolean;
+  onChange: (next: AISettings) => void;
+  onEnable: () => void;
+  onClose: () => void;
+}) {
+  if (!open) return null;
+  const ready = hasFallback || !!ai.keyInMemory?.trim();
+  return (
+    <div className="modal-mask" style={{ zIndex: 95 }} onClick={onClose}>
+      <div className="modal ai-enable-modal" role="dialog" aria-modal="true" aria-label="AI 开启设置" onClick={event => event.stopPropagation()}>
+        <div className="ai-enable-head">
+          <div>
+            <h3 className="card-title" style={{ margin: 0 }}>AI 开启设置</h3>
+            <div className="muted small" style={{ marginTop: 4 }}>当前排盘和结果已保留。</div>
+          </div>
+          <button className="btn sm" onClick={onClose} aria-label="关闭 AI 开启设置">✕</button>
+        </div>
+        <div className={`notice ${hasFallback ? 'info' : 'warn'}`} style={{ marginTop: 14 }}>
+          {hasFallback ? '已检测到本机构建的加密 OpenRouter 保底，可直接开启。' : '当前构建没有内置保底，请输入 API Key 后开启。'}
+        </div>
+        {!hasFallback && (
+          <label className="field" style={{ marginTop: 12 }}>
+            <span>OpenRouter API Key（仅保存在当前页面内存）</span>
+            <input
+              className="input"
+              type="password"
+              value={ai.keyInMemory ?? ''}
+              onChange={event => onChange({ ...ai, providerId: 'openrouter', keyInMemory: event.target.value })}
+              placeholder="sk-or-v1-…"
+              autoComplete="off"
+              autoFocus
+            />
+          </label>
+        )}
+        <div className="ai-enable-actions">
+          <button className="btn" onClick={onClose}>返回当前结果</button>
+          <button className="btn primary" disabled={!ready} onClick={onEnable}>开启 AI 并返回结果</button>
+        </div>
+      </div>
     </div>
   );
 }

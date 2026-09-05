@@ -1,7 +1,9 @@
 import React from 'react';
+import { readFileSync } from 'node:fs';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
-import { AIResultModal, AiQuickBar, AnswerPanel } from '../packages/ui/src/components';
+import { AIEnableDialog, AIResultModal, AiQuickBar, AnswerPanel } from '../packages/ui/src/components';
+import { aiSettingsForStorage } from '../packages/ui/src/state';
 
 const answer = {
   art: 'meihua',
@@ -41,5 +43,46 @@ describe('AI 长耗时等待反馈', () => {
     expect(html).toContain('原回答仍然可见');
     expect(html).toContain('AI 正在推演追问');
     expect(html).toContain('追问中');
+  });
+
+  it('未开启时显示保留当前结果的开启面板', () => {
+    const baseAI = { enabled: false, providerId: 'openrouter', baseUrl: '', model: '', temperature: 0.3, anonymizeBoard: true };
+    const fallbackHtml = renderToStaticMarkup(
+      <AIEnableDialog open ai={baseAI} hasFallback onChange={() => undefined} onEnable={() => undefined} onClose={() => undefined} />,
+    );
+    expect(fallbackHtml).toContain('当前排盘和结果已保留');
+    expect(fallbackHtml).toContain('可直接开启');
+    expect(fallbackHtml).not.toContain('type="password"');
+
+    const manualHtml = renderToStaticMarkup(
+      <AIEnableDialog open ai={baseAI} hasFallback={false} onChange={() => undefined} onEnable={() => undefined} onClose={() => undefined} />,
+    );
+    expect(manualHtml).toContain('type="password"');
+    expect(manualHtml).toContain('disabled=""');
+  });
+
+  it('持久化 AI 偏好时剔除内存 Key', () => {
+    const stored = aiSettingsForStorage({
+      enabled: true,
+      providerId: 'openrouter',
+      baseUrl: '',
+      model: 'openrouter/free',
+      temperature: 0.3,
+      anonymizeBoard: true,
+      keyInMemory: 'never-store-this',
+    });
+    expect(stored.enabled).toBe(true);
+    expect(stored).not.toHaveProperty('keyInMemory');
+    expect(JSON.stringify(stored)).not.toContain('never-store-this');
+  });
+
+  it('所有模型调用页面都接入统一开启入口', () => {
+    const files = ['IntakeWizard.tsx', 'ProCast.tsx', 'CombinedView.tsx', 'Pages.tsx'];
+    for (const file of files) {
+      const source = readFileSync(new URL(`../packages/ui/src/${file}`, import.meta.url), 'utf8');
+      expect(source, file).toContain('callAIStrict');
+      expect(source, file).toContain('requestAISetup()');
+      expect(source, file).toContain('aiBusy={aiBusy}');
+    }
   });
 });

@@ -36,6 +36,9 @@ interface AppCtx {
   kbLoading: boolean;
   ai: AISettings;
   setAI: (a: AISettings) => void;
+  aiSetupOpen: boolean;
+  requestAISetup: () => void;
+  closeAISetup: () => void;
   toast: (msg: string) => void;
   toasts: Array<{ id: number; msg: string }>;
 }
@@ -81,10 +84,16 @@ function writeStored(key: string, value: unknown): void {
   try { localStorage.setItem(key, JSON.stringify(value)); } catch { /* 存储被禁用或空间不足时仍允许继续使用 */ }
 }
 
+export function aiSettingsForStorage(value: AISettings): AISettings {
+  const { keyInMemory: _keyInMemory, ...persisted } = value;
+  return persisted;
+}
+
 export function AppProvider({ corpusDocs, children }: { corpusDocs: KBDocument[]; children: React.ReactNode }) {
   const [config, setConfig] = useState<ResolvedConfig>(() => readStored('xuanshu.config', defaultConfig()));
   const [settings, setSettings] = useState<AppSettings>(() => readStored('xuanshu.settings', DEFAULT_SETTINGS));
   const [ai, setAI] = useState<AISettings>(() => ({ ...readStored('xuanshu.ai', DEFAULT_AI), keyInMemory: undefined }));
+  const [aiSetupOpen, setAiSetupOpen] = useState(false);
   const [toasts, setToasts] = useState<Array<{ id: number; msg: string }>>([]);
   const [kbLoading, setKbLoading] = useState(true);
   const [kbIndex, setKbIndex] = useState<KBIndex>(() => buildIndex([]));
@@ -115,6 +124,7 @@ export function AppProvider({ corpusDocs, children }: { corpusDocs: KBDocument[]
     root.setAttribute('data-theme', theme);
     root.setAttribute('data-contrast', settings.highContrast ? 'high' : 'normal');
   }, [settings]);
+  useEffect(() => { writeStored('xuanshu.ai', aiSettingsForStorage(ai)); }, [ai]);
 
   const toast = useCallback((msg: string) => {
     const id = Date.now() + Math.random();
@@ -124,7 +134,11 @@ export function AppProvider({ corpusDocs, children }: { corpusDocs: KBDocument[]
 
   const value: AppCtx = {
     config, setConfig, configHash, settings, setSettings,
-    corpus: corpusRef.current, kbIndex, kbLoading, ai, setAI, toast, toasts,
+    corpus: corpusRef.current, kbIndex, kbLoading, ai, setAI,
+    aiSetupOpen,
+    requestAISetup: () => setAiSetupOpen(true),
+    closeAISetup: () => setAiSetupOpen(false),
+    toast, toasts,
   };
   return <Ctx.Provider value={value}>{children}<div className="toast-wrap">{toasts.map(t => <div key={t.id} className="toast" role="status">{t.msg}</div>)}</div></Ctx.Provider>;
 }

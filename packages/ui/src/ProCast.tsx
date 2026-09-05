@@ -34,13 +34,13 @@ const METHODS: Record<ArtType, Array<{ key: string; label: string }>> = {
 const CATEGORIES_OPT: CategoryId[] = ['求财', '事业', '感情', '学业', '健康', '出行', '官非', '失物', '择日', '家宅', '生育', '合作', '决策', '其他'];
 
 export function ProCast({ initialArt }: { initialArt?: ArtType }) {
-  const { config, setConfig, kbIndex, toast, ai, settings } = useApp();
+  const { config, setConfig, kbIndex, toast, ai, settings, requestAISetup } = useApp();
   // AI 精解状态（自带 Key；默认关闭；默认不自动调用）
   const [aiBusy, setAiBusy] = useState(false);
   const [aiText, setAiText] = useState<string | null>(null);
   const [aiErr, setAiErr] = useState<string | null>(null);
   const askAI = async () => {
-    if (!ai.enabled) { toast('AI 辅助解读未开启（设置中可开启）'); return; }
+    if (!ai.enabled) { requestAISetup(); return; }
     if (!cast) return;
     setAiBusy(true); setAiErr(null); setAiText(null);
     try {

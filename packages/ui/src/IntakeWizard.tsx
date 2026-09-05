@@ -33,13 +33,13 @@ export interface IntakeInitials {
   initialQuestion?: string;
 }
 export function IntakeWizard({ initialCategory, initialArt, initialTime, initialGender, initialQuestion }: IntakeInitials) {
-  const { config, setConfig, corpus, kbIndex, toast, ai, settings } = useApp();
+  const { config, setConfig, corpus, kbIndex, toast, ai, settings, requestAISetup } = useApp();
   // AI 精解状态（自带 Key；默认关闭；仅手动触发）
   const [aiBusy, setAiBusy] = useState(false);
   const [aiText, setAiText] = useState<string | null>(null);
   const [aiErr, setAiErr] = useState<string | null>(null);
   const askAI = async () => {
-    if (!ai.enabled) { toast('AI 辅助解读未开启（设置中可开启）'); return; }
+    if (!ai.enabled) { requestAISetup(); return; }
     if (!cast || !art) return;
     setAiBusy(true); setAiErr(null); setAiText(null);
     try {
@@ -60,7 +60,7 @@ export function IntakeWizard({ initialCategory, initialArt, initialTime, initial
   };
   // 同盘继续追问：带上本盘上下文 + 追问语，重新走严格解读
   const askFollow = async (q: string) => {
-    if (!ai.enabled) { toast('AI 辅助解读未开启（设置中可开启）'); return; }
+    if (!ai.enabled) { requestAISetup(); return; }
     if (!cast || !art) return;
     setAiBusy(true); setAiErr(null);
     try {

@@ -478,7 +478,7 @@ export function SettingsView() {
 /** 一键还原当时盘面（§5.1 任意一条可还原） */
 export function CaseBoardView({ caseId }: { caseId: string }) {
   const rec = useLiveQuery(async () => getDB().cases.get(caseId), [caseId]) as CaseRecord | undefined;
-  const { ai, toast } = useApp();
+  const { ai, toast, requestAISetup } = useApp();
   const [aiBusy, setAiBusy] = useState(false);
   const [aiText, setAiText] = useState<string | null>(null);
   const [aiErr, setAiErr] = useState<string | null>(null);
@@ -493,7 +493,7 @@ export function CaseBoardView({ caseId }: { caseId: string }) {
     return lines.join('\n');
   };
   const askAI = async () => {
-    if (!ai.enabled) { toast('AI 辅助解读未开启（设置中可开启）'); return; }
+    if (!ai.enabled) { requestAISetup(); return; }
     if (!rec) return;
     setAiBusy(true); setAiErr(null); setAiText(null);
     try {

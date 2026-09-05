@@ -12,7 +12,10 @@ import { HehunView } from './HehunView';
 import { CalendarView } from './CalendarView';
 import { XingZuoView } from './XingZuoView';
 import { WelcomeGuide, hasSeenWelcome, markWelcomeSeen } from './WelcomeGuide';
+import { AIEnableDialog } from './components';
+import { useApp } from './state';
 import { ART_LIST, CATEGORIES, type ArtType, type CategoryId } from '@xuanshu/core';
+import { hasEmbeddedAIFallback } from '@xuanshu/ai';
 import './styles.css';
 
 const Icon = ({ d }: { d: string }) => (
@@ -60,6 +63,7 @@ class Boundary extends Component<{ children: ReactNode }, { err: Error | null; s
 
 export function App() {
   const [route, nav] = useRouter();
+  const { ai, setAI, aiSetupOpen, closeAISetup } = useApp();
   // 左侧菜单折叠（桌面端）：收起后仅剩图标，给主区更多空间
   const [collapsed, setCollapsed] = useState(false);
   // 首启引导：首次进入展示，点击“开始使用/跳过”后记录并关闭
@@ -138,6 +142,14 @@ export function App() {
         ))}
       </nav>
       {welcome && <WelcomeGuide onDone={closeWelcome} />}
+      <AIEnableDialog
+        open={aiSetupOpen}
+        ai={ai}
+        hasFallback={hasEmbeddedAIFallback()}
+        onChange={setAI}
+        onClose={closeAISetup}
+        onEnable={() => { setAI({ ...ai, enabled: true }); closeAISetup(); }}
+      />
     </div>
     </Boundary>
   );
