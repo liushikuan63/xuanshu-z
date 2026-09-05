@@ -119,7 +119,7 @@ export function App() {
         </div>
         <div className="brand">
           <div className="brand-mark">玄</div>
-          <div><div className="brand-name">玄枢</div><div className="brand-sub">XUANSHU</div></div>
+          <div><div className="brand-name">玄枢八术</div><div className="brand-sub">EIGHT ARTS</div></div>
         </div>
         {NAV.map(n => (
           <button key={n.key} className={`nav-item ${active === n.key ? 'active' : ''}`}

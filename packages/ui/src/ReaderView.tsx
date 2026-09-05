@@ -250,7 +250,7 @@ export function ReaderView({ initialCanonical, openNoteDraft }: { initialCanonic
     const catCount = (c: '全部' | WushuCategory) => c === '全部' ? BOOK_CATALOG.length : BOOK_CATALOG.filter(b => b.category === c).length;
     return (
       <div>
-        <div className="page-head"><div className="page-title">书阁 · 五术书库</div><div className="page-desc">山医命相卜 {BOOK_CATALOG.length} 部书目 · 全文、相关原典、扫描与存佚状态均据实标注</div></div>
+        <div className="page-head"><div className="page-title">书阁 · 八术原典</div><div className="page-desc">按山医命相卜整理 {BOOK_CATALOG.length} 部书目 · 全文、相关原典、扫描与存佚状态均据实标注</div></div>
         <div className="row wrap" style={{ gap: 6, marginBottom: 10 }}>
           <span className="tag clickable" style={{ padding: '4px 12px', fontWeight: cat === '全部' ? 700 : 400, background: cat === '全部' ? 'var(--gold-soft)' : undefined }} onClick={() => setCat('全部')}>全部（{catCount('全部')}）</span>
           {WUSHU_CATEGORIES.map(c => (

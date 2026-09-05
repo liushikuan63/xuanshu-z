@@ -4,7 +4,7 @@
   "private": true,
   "type": "commonjs",
   "main": "src/main.js",
-  "description": "玄枢 Electron 桌面壳（Win11）",
+  "description": "玄枢八术 Electron 桌面壳（Win11）",
   "scripts": {
     "dev": "electron .",
     "start": "electron .",

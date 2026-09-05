@@ -1,6 +1,6 @@
 # 玄枢桌面壳打包配置（electron-builder，Win11 NSIS）
 appId: xuanshu.workbench
-productName: 玄枢
+productName: 玄枢八术
 copyright: 玄枢 · 本地优先，数据不出本机
 directories:
   output: release
@@ -12,9 +12,9 @@ extraMetadata:
 win:
   target:
     - nsis
-  artifactName: XuanshuSetup-${version}.${ext}
+  artifactName: XuanshuEightArtsSetup-${version}.${ext}
 nsis:
   oneClick: false
   allowToChangeInstallationDirectory: true
   createDesktopShortcut: true
-  shortcutName: 玄枢
+  shortcutName: 玄枢八术

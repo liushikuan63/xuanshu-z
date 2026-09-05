@@ -1,6 +1,6 @@
 {
   "appId": "xuanshu.workbench",
-  "appName": "玄枢",
+  "appName": "玄枢八术",
   "webDir": "../web/dist",
   "android": { "allowMixedContent": false },
   "server": { "androidScheme": "https" }

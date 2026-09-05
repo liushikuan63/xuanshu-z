@@ -2,7 +2,7 @@
   "name": "@xuanshu/mobile",
   "version": "1.2.14-Beta",
   "private": true,
-  "description": "玄枢 Android 壳（Capacitor 打包 web/dist）",
+  "description": "玄枢八术 Android 壳（Capacitor 打包 web/dist）",
   "scripts": {
     "sync": "npm run build:web && cap sync android",
     "build:web": "cd ../web && vite build",
