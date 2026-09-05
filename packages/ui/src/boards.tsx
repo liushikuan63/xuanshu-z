@@ -2571,15 +2571,19 @@ export function LiuyaoBoard({ chart }: { chart: LiuyaoChart }) {
 }
 
 // ---------- 梅花 ----------
-function TrigramLines({ tri, moving, label, onClickTri }: { tri: string; moving?: boolean; label?: string; onClickTri?: () => void }) {
+export function trigramLinesForDisplay(tri: string, movingLine?: number) {
+  return tri.split('').map((bit, lineIndex) => ({ bit, lineIndex, moving: lineIndex === movingLine })).reverse();
+}
+
+function TrigramLines({ tri, movingLine, label, onClickTri }: { tri: string; movingLine?: number; label?: string; onClickTri?: () => void }) {
   return (
-    <div className="clickable" onClick={onClickTri} style={{ cursor: 'pointer' }}>
-      {tri.split('').map((b, i) => (
-        <div className="mh-line-row" key={i}>
-          {b === '1'
-            ? <div className="mh-yang"><div className="mh-bar" style={{ width: 98 }} /></div>
-            : <div className="mh-yin"><div className="mh-bar" style={{ width: 42 }} /><div className="mh-bar" style={{ width: 42 }} /></div>}
-          {moving && <span className="mh-dong" title="动爻">动</span>}
+    <div className="mh-trigram clickable" onClick={onClickTri} style={{ cursor: 'pointer' }}>
+      {trigramLinesForDisplay(tri, movingLine).map(line => (
+        <div className="mh-line-row" key={line.lineIndex} data-line={line.lineIndex + 1}>
+          {line.bit === '1'
+            ? <div className="mh-yang"><div className="mh-bar" /></div>
+            : <div className="mh-yin"><div className="mh-bar" /><div className="mh-bar" /></div>}
+          {line.moving && <span className="mh-dong" title={`第${line.lineIndex + 1}爻动`}>动</span>}
         </div>
       ))}
       {label && <div className="mh-ti" style={{ textAlign: 'center' }}>{label}</div>}
@@ -2648,9 +2652,9 @@ export function MeihuaBoard({ chart }: { chart: MeihuaChart }) {
         ] })}>
           <div className="mh-gua-title">本卦 · {chart.guaName}</div>
           <div className="mh-lines">
-            <TrigramLines tri={triOf(chart.upper)} moving={chart.movingIdx >= 3} label={`上卦${chart.upper}（${chart.movingIdx >= 3 ? '用' : '体'}）`} onClickTri={() => triPopup(chart.upper, chart.movingIdx >= 3 ? '用卦' : '体卦·上卦', chart.movingIdx >= 3 ? chart.yongWx : chart.tiWx)} />
+            <TrigramLines tri={triOf(chart.upper)} movingLine={chart.movingIdx >= 3 ? chart.movingIdx - 3 : undefined} label={`上卦${chart.upper}（${chart.movingIdx >= 3 ? '用' : '体'}）`} onClickTri={() => triPopup(chart.upper, chart.movingIdx >= 3 ? '用卦' : '体卦·上卦', chart.movingIdx >= 3 ? chart.yongWx : chart.tiWx)} />
             <div style={{ height: 10 }} />
-            <TrigramLines tri={triOf(chart.lower)} moving={chart.movingIdx < 3} label={`下卦${chart.lower}（${chart.movingIdx < 3 ? '用' : '体'}）`} onClickTri={() => triPopup(chart.lower, chart.movingIdx < 3 ? '用卦' : '体卦·下卦', chart.movingIdx < 3 ? chart.yongWx : chart.tiWx)} />
+            <TrigramLines tri={triOf(chart.lower)} movingLine={chart.movingIdx < 3 ? chart.movingIdx : undefined} label={`下卦${chart.lower}（${chart.movingIdx < 3 ? '用' : '体'}）`} onClickTri={() => triPopup(chart.lower, chart.movingIdx < 3 ? '用卦' : '体卦·下卦', chart.movingIdx < 3 ? chart.yongWx : chart.tiWx)} />
           </div>
         </div>
         <div className="mh-gua clickable" onClick={() => setPopup({ title: `互卦：${chart.huGuaName}`, sections: [{ label: '互卦·事之中间过程', value: `${chart.huGuaName}（五行${chart.huWx}）`, note: GLOSSARY.互卦?.plain ?? '' }] })}>
